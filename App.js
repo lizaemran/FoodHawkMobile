@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { enableScreens } from 'react-native-screens';
+// import DrawerLeft from './components/DrawerLeft';
+import Navigator from './navigation/Navigator';
+import store from './redux/Store';
+import { Provider } from 'react-redux';
+enableScreens();
+
 
 export default function App() {
+  // const [isLogin, setIsLogin] = useState(false);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+   <>
+      <Provider store={store}>
+        <Navigator /> 
+      </Provider>
+     
+   </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+ 
