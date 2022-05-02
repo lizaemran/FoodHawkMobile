@@ -47,7 +47,7 @@ const RiderDashboard = props => {
                     token: token,
                     id: decodedToken._id
                 }))
-            }, 5000);
+            }, 50000);
         }
     }, [token!==null]);
     const [isEnabled, setIsEnabled] = useState(false);

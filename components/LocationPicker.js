@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {View, Button, Text, ActivityIndicator, Alert, StyleSheet} from 'react-native';
 import Colors from "../constants/colors";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,17 +52,21 @@ const LocationPicker = props => {
         setIsFetching(false);
 
     }
+    useEffect(() => {
+        setInterval(() => {
+            getLocationHandler();
+        }, 50000);
+    }, []);
     return (
         <View style={styles.locationPicker}>
            <MapPreview style={styles.mapPreview} location={pickedLocation}> 
                 {isFetching ? <ActivityIndicator 
                 size='large'
-                color={Colors.primary} /> : <Text >No Location chosen yet</Text>}
+                color={Colors.primary} /> : <Text >Updating Location</Text>}
            </MapPreview>
             <Button 
-            title="Pick Location" 
-            color={Colors.primary} 
-            onPress={getLocationHandler} />
+            title="Updating Location Every Location 50 seconds" 
+            color={Colors.primary} />
         </View>
     );
 }

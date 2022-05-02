@@ -30,17 +30,29 @@ const Login = props => {
         ButtonComponent = TouchableNativeFeedback;
     }
     const [username, setUsername] = useState('');
+    const [usernameError, setUsernameError] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordError, setPasswordError] = useState('');
   
     const usernameHandler = (text) => {
-        if(text === undefined){
-            Alert.alert('Invalid Username', 'Please enter a valid username', [{text: 'Okay', style: 'destructive'}]);
-        }
-        setUsername(text.replace('<', ''));
+      if(text === ''){
+        setUsernameError(true);
+          // Alert.alert('Invalid Username', 'Please enter a valid username', [{text: 'Okay', style: 'destructive'}]);
+      }else{
+        setUsernameError(false);
+      }
+      setUsername(text.replace('<', ''));
 
     }
     const passwordHandler = (text) => {
-        setPassword(text);
+      if(text.length < 6){
+        setPasswordError(true);
+        // Alert.alert('Invalid Password', 'Password must be at least 6 characters', [{text: 'Okay', style: 'destructive'}]);
+    }
+    else{
+    setPasswordError(false);
+    }
+    setPassword(text);
     }
     const submitHandler = (e) => {
         e.preventDefault();
@@ -78,6 +90,7 @@ const Login = props => {
         value={username}
         onChangeText={usernameHandler}
         style={{borderBottomColor:Colors.primary, borderBottomWidth: 1, padding: 10, marginVertical:10 }} />
+        {usernameError && <Text style={styles.danger}>Enter Valid Username</Text>}
         <TextInput 
         placeholder='Password' 
         blurOnSubmit 
@@ -86,7 +99,8 @@ const Login = props => {
         value={password}
         onChangeText={passwordHandler}
         style={{borderBottomColor:Colors.primary, borderBottomWidth: 1, padding: 10, marginVertical:10 }} />
-        <Text style={styles.small}>Forget Password?</Text>
+        {passwordError && <Text style={styles.danger}>Enter Valid Password of length atleast 6</Text>}
+        {/* <Text style={styles.small}>Forget Password?</Text> */}
         <ButtonComponent activeOpacity={0.6}>
         <View style={styles.button} > 
             <Button title="Login" color={Colors.primary} onPress={submitHandler} />
@@ -147,6 +161,11 @@ const styles = StyleSheet.create({
   small: {
     color:Colors.tertiary,
     marginTop:5,
+  },
+  danger: {
+    color:Colors.danger,
+    marginVertical:5,
+    fontSize: 10
   }
 });
  export default Login;

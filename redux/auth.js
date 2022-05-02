@@ -1,6 +1,35 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 // import { toast } from 'react-toastify';
 
+export const registerRiderAsync = createAsyncThunk('auth/registerRiderAsync',
+async(payload) => {
+    const response = await fetch('http://localhost:7000/api/rider/', {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({
+            username: payload.username,
+            name: payload.name,
+            email: payload.email,
+            password: payload.password,
+            phone: payload.phone,
+            lat: payload.lat,
+            lng: payload.lng,
+        })
+    });
+
+    if(response.ok){
+        const rider = await response.json();
+        payload.navigation.navigate('Login');
+        return {rider};
+    }
+    else{
+        var error = true;
+        return {error};
+    }
+});
+
 export const loginRiderAsync = createAsyncThunk('auth/loginRiderAsync',
 async(payload) => {
     const response = await fetch('http://localhost:7000/api/auth/rider', {
@@ -113,6 +142,19 @@ const AuthSlice = createSlice({
         },
     },
     extraReducers: {
+        [registerRiderAsync.fulfilled]: (state,action) => {
+            if(action?.payload?.error){
+                // toast("Invalid details", {
+                //     position: "top-right",
+                //     autoClose: 5000,
+                // });
+                console.log("Invalid details");
+            }
+            else{
+            console.log("Rider registered successfully.");
+            return action.payload.rider;
+            }
+        },
         [loginRiderAsync.fulfilled]: (state,action) => {
             if(action?.payload?.error){
                 // toast("Invalid username or password", {
