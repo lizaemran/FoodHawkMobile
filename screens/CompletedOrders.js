@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Button , StyleSheet, Dimensions, FlatList} from 'react-native';
+import { View, Button , StyleSheet, Dimensions, FlatList, Text} from 'react-native';
 import Colors from '../constants/colors';
 import OrdersGridTile from '../components/OrdersGridtTile';
 import { useSelector } from 'react-redux';
@@ -61,6 +61,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: Colors.primary
     },
+    noOrders: {
+        flex:1,
+    }
    
 });
 

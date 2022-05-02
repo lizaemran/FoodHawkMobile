@@ -97,7 +97,7 @@ const Register = props => {
           Keyboard.dismiss();
       }}>     
         <>
-      <Header title='Food Hawk' />
+      {/* <Header title='Food Hawk' /> */}
       <View style={styles.screen}>
         <View style={styles.inputContainer}>
         <Ionicons name="bicycle-outline" size={36} color={Colors.primary} />

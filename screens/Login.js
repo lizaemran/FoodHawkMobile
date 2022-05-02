@@ -65,7 +65,7 @@ const Login = props => {
           Keyboard.dismiss();
       }}>     
         <>
-      <Header title='Food Hawk' />
+      {/* <Header title='Food Hawk' /> */}
       <View style={styles.screen}>
         <View style={styles.inputContainer}>
         <Ionicons name="bicycle-outline" size={36} color={Colors.primary} />
@@ -98,6 +98,9 @@ const Login = props => {
             routeName: 'Register'
           })} style={styles.small}>Not a member? Join Us</Text>
         </TouchableOpacity>
+        {Platform.OS !== 'web' && <Text onPress={() => props.navigation.navigate({
+            routeName: 'RiderDashboard'
+          })}>Mobile testing</Text>}
         <StatusBar style="auto" />
     </View>
     </View>

@@ -40,6 +40,51 @@ async(payload) => {
     }
 });
 
+export const patchRiderStatusAsync = createAsyncThunk('auth/patchRiderStatusAsync',
+async(payload) => {
+    const response = await fetch(`http://localhost:7000/api/rider/status/${payload.id}`, {
+        method: 'PATCH',
+        headers: {
+            "Content-Type": 'application/json',
+            "x-auth-token": payload.token,
+        },
+        body: JSON.stringify({
+            status : payload.status
+        })
+    });
+    if(response.ok){
+        const rider = await response.json();
+        return {rider};
+    }
+    else{
+        var error = true;
+        return {error};
+    }
+});
+
+export const patchRiderLocationAsync = createAsyncThunk('auth/patchRiderLocationAsync',
+async(payload) => {
+    const response = await fetch(`http://localhost:7000/api/rider/location/${payload.id}`, {
+        method: 'PATCH',
+        headers: {
+            "Content-Type": 'application/json',
+            "x-auth-token": payload.token
+        },
+        body: JSON.stringify({
+            lat: payload.lat,
+            lng: payload.lng
+        })
+    });
+    if(response.ok){
+        const rider = await response.json();
+        return {rider};
+    }
+    else{
+        var error = true;
+        return {error};
+    }
+});
+
 const AuthSlice = createSlice({
     name: "auth",
     initialState: 
@@ -59,7 +104,7 @@ const AuthSlice = createSlice({
             },
         logoutUser: (state, action) => {
             // localStorage.removeItem('token');
-            action.payload.navigate('Login');
+            action.payload.navigation.navigate('Login');
             return{
                 ...state,
                 token: null,
@@ -93,8 +138,19 @@ const AuthSlice = createSlice({
                 phone: action?.payload?.rider?.phone,
                 user_type: 'rider',
                 isConfirmed : action?.payload?.rider?.isConfirmed,
+                status: action?.payload?.rider?.status,
+                lng: action?.payload?.rider?.lng,
+                lat: action?.payload?.rider?.lat,
 
             }
+        },
+        [patchRiderStatusAsync.fulfilled]: (state,action) => {
+            console.log("Updated Rider successfully.");
+            return {...state, status : action.payload.rider?.status};
+        },
+        [patchRiderLocationAsync.fulfilled]: (state,action) => {
+            console.log("Updated Rider successfully.");
+            return {...state, lat : action.payload.rider?.lat, lng : action.payload.rider?.lng};
         },
 
     }

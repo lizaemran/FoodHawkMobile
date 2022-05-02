@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { enableScreens } from 'react-native-screens';
 // import DrawerLeft from './components/DrawerLeft';
 import Navigator from './navigation/Navigator';

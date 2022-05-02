@@ -5,5 +5,6 @@ export default {
     header: '#e87458',
     headerText: '#fff',
     active: '#25d366',
+    notActive: 'gray',
     
 }

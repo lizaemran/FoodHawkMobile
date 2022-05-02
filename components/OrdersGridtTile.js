@@ -11,6 +11,8 @@ const OrdersGridTile = props => {
             <Text >Time: {props.time}</Text>
             <Text >Status: {props.status}</Text>
             <Text >Total Bill: Rs.{props.total_price}</Text>
+            {props.isCurrent && <Text style={{color:Colors.primary}}>Current Order</Text>}
+
         </View>
         </TouchableOpacity>
     );
@@ -48,7 +50,6 @@ const styles = StyleSheet.create({
     tinyLogo: {
         width: Dimensions.get('window').width * 0.13,
         height: Dimensions.get('window').width * 0.13,
-        borderRadius: '50%'
       },
 });
 
