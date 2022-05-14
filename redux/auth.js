@@ -148,10 +148,8 @@ const AuthSlice = createSlice({
                 //     position: "top-right",
                 //     autoClose: 5000,
                 // });
-                console.log("Invalid details");
             }
             else{
-            console.log("Rider registered successfully.");
             return action.payload.rider;
             }
         },
@@ -161,15 +159,12 @@ const AuthSlice = createSlice({
                 //     position: "top-right",
                 //     autoClose: 5000,
                 // });    
-                console.log("Invalid username or password");        
             }
             else{
-            console.log("Rider logged in successfully.");
             return{...state, token : action?.payload?.token?.token}
             }
         },
         [getRiderAsync.fulfilled]: (state,action) => {
-            console.log("Got Rider successfully.");
             return{
                 ...state,
                 id: action?.payload?.rider?._id,
@@ -187,11 +182,9 @@ const AuthSlice = createSlice({
             }
         },
         [patchRiderStatusAsync.fulfilled]: (state,action) => {
-            console.log("Updated Rider successfully.");
             return {...state, status : action.payload.rider?.status};
         },
         [patchRiderLocationAsync.fulfilled]: (state,action) => {
-            console.log("Updated Rider successfully.");
             return {...state, lat : action.payload.rider?.lat, lng : action.payload.rider?.lng};
         },
 

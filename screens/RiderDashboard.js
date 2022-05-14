@@ -126,9 +126,9 @@ const RiderDashboard = props => {
             Logout
             </Text>
       </View>
-      {Platform.OS !== 'web' && <Text onPress={() => props.navigation.navigate({
+      {Platform.OS !== 'web' ? <Text onPress={() => props.navigation.navigate({
             routeName: 'Login'
-          })}>Mobile testing</Text>}
+          })}>Mobile testing</Text> : null}
       </View>
         </View>
     

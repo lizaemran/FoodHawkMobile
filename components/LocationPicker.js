@@ -55,7 +55,7 @@ const LocationPicker = props => {
     useEffect(() => {
         setInterval(() => {
             getLocationHandler();
-        }, 50000);
+        }, 5000);
     }, []);
     return (
         <View style={styles.locationPicker}>

@@ -90,7 +90,7 @@ const Login = props => {
         value={username}
         onChangeText={usernameHandler}
         style={{borderBottomColor:Colors.primary, borderBottomWidth: 1, padding: 10, marginVertical:10 }} />
-        {usernameError && <Text style={styles.danger}>Enter Valid Username</Text>}
+        {usernameError ? <Text style={styles.danger}>Enter Valid Username</Text> : null}
         <TextInput 
         placeholder='Password' 
         blurOnSubmit 
@@ -99,7 +99,7 @@ const Login = props => {
         value={password}
         onChangeText={passwordHandler}
         style={{borderBottomColor:Colors.primary, borderBottomWidth: 1, padding: 10, marginVertical:10 }} />
-        {passwordError && <Text style={styles.danger}>Enter Valid Password of length atleast 6</Text>}
+        {passwordError ? <Text style={styles.danger}>Enter Valid Password of length atleast 6</Text> : null}
         {/* <Text style={styles.small}>Forget Password?</Text> */}
         <ButtonComponent activeOpacity={0.6}>
         <View style={styles.button} > 
@@ -112,9 +112,9 @@ const Login = props => {
             routeName: 'Register'
           })} style={styles.small}>Not a member? Join Us</Text>
         </TouchableOpacity>
-        {Platform.OS !== 'web' && <Text onPress={() => props.navigation.navigate({
+        {Platform.OS !== 'web' ? <Text onPress={() => props.navigation.navigate({
             routeName: 'RiderDashboard'
-          })}>Mobile testing</Text>}
+          })}>Mobile testing</Text> : null}
         <StatusBar style="auto" />
     </View>
     </View>

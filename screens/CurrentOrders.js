@@ -78,7 +78,7 @@ const CurrentOrders = props => {
                         }))
                     }} color={Colors.primary} />
                     </>)}
-                {currentOrder?.status === 'picked' && (<>
+                {currentOrder?.status === 'picked' ? (<>
                 <View style={{marginVertical:10}}>
                 <Button title='Get User Direction'  onPress={userDirections}
                     color={Colors.primary} />
@@ -90,7 +90,7 @@ const CurrentOrders = props => {
                             token: token
                         }))
                     }}  color={Colors.primary} />
-                    </>)}
+                    </>) : null}
             </View>
         </View>
     //   <FlatList

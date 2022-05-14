@@ -163,7 +163,7 @@ const Register = props => {
         value={username}
         onChangeText={usernameHandler}
         style={{borderBottomColor:Colors.primary, borderBottomWidth: 1, padding: 10, marginVertical:10 }} />
-        {usernameError && <Text style={styles.danger}>Enter Valid Username</Text>}
+        {usernameError ? <Text style={styles.danger}>Enter Valid Username</Text> : null}
         <TextInput 
         placeholder='Password' 
         blurOnSubmit 
@@ -171,8 +171,8 @@ const Register = props => {
         autoCorrect={false}
         value={password}
         onChangeText={passwordHandler}
-        style={{borderBottomColor:Colors.primary, borderBottomWidth: 1, padding: 10, marginVertical:10 }} />
-        {passwordError && <Text style={styles.danger}>Enter Valid Password of length atleast 6</Text>}
+        style={{borderBottomColor:Colors.primary, borderBottomWidth: 1, padding: 10, marginVertical:10, }} />
+        {passwordError ? <Text style={styles.danger}>Enter Valid Password of length atleast 6</Text> : null}
         <TextInput 
         placeholder='Name' 
         blurOnSubmit 
@@ -181,7 +181,7 @@ const Register = props => {
         value={name}
         onChangeText={nameHandler}
         style={{borderBottomColor:Colors.primary, borderBottomWidth: 1, padding: 10, marginVertical:10 }} />
-        {nameError && <Text style={styles.danger}>Enter Valid Name</Text>}
+        {nameError ? <Text style={styles.danger}>Enter Valid Name</Text> : null}
         <TextInput 
         placeholder='Email' 
         blurOnSubmit 
@@ -191,7 +191,7 @@ const Register = props => {
         onChangeText={emailHandler}
         keyboardType='email-address'
         style={{borderBottomColor:Colors.primary, borderBottomWidth: 1, padding: 10, marginVertical:10 }} />
-        {emailError && <Text style={styles.danger}>Enter Valid Email</Text>}
+        {emailError ? <Text style={styles.danger}>Enter Valid Email</Text> : null}
         <TextInput 
         placeholder='Phone' 
         blurOnSubmit 
@@ -202,7 +202,7 @@ const Register = props => {
         maxLength={11}
         onChangeText={phoneHandler}
         style={{borderBottomColor:Colors.primary, borderBottomWidth: 1, padding: 10, marginVertical:10 }} />
-        {phoneError && <Text style={styles.danger}>Enter Valid Phone</Text>}
+        {phoneError ? <Text style={styles.danger}>Enter Valid Phone</Text> : null}
         {/* <Text style={styles.small}>Forget Password?</Text> */}
         <TouchableOpacity activeOpacity={0.6}>
         <View style={styles.button} > 

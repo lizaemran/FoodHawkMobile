@@ -68,22 +68,18 @@ const OrdersSlice = createSlice({
     },
     extraReducers: {
         [getDeliveredOrders.fulfilled]: (state,action) => {
-            console.log("Got Delivered Order successfully.");
             return {...state, completedOrders: action.payload?.orders};
         },
         [getAssignedOrder.fulfilled]: (state,action) => {
             if(action?.payload?.error){
-                console.log("Got No Assigned Order.");
                 return {...state, currentOrder: {}};
             }
             else{
-                console.log("Got Assigned Order successfully.");
                 return {...state, currentOrder: action.payload?.order};
             }
             
         },
         [patchOrderStatusAsync.fulfilled]: (state,action) => {
-            console.log("Updated Order successfully.");
             if(action.payload.order.status === "delivered"){
                 return {...state,  currentOrder: {}};
             }
